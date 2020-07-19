@@ -11,3 +11,7 @@
 ```bash
 composer create-project --prefer-dist laravel/laravel lv.summeronsnow.ru
 ```
+## Обновление(минор)
+```bash
+composer update
+```
