@@ -7,8 +7,15 @@ use Illuminate\Http\Request;
 
 class Dostavista implements Delivery
 {
-    public function registerOrder(Request $request)
+    private $request;
+
+    public function __construct(Request $request)
     {
-        return 'It\'s ' . $request->service . ' registerOrder function from Dostavista';
+        $this->request = $request;
+    }
+
+    public function registerOrder()
+    {
+        return 'It\'s ' . $this->request->service . ' registerOrder function from Dostavista';
     }
 }

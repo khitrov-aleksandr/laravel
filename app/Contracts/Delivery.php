@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 interface Delivery
 {
-    public function registerOrder(Request $request);
+    public function registerOrder();
 }

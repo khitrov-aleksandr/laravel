@@ -7,8 +7,15 @@ use Illuminate\Http\Request;
 
 class Cdek implements Delivery
 {
-    public function registerOrder(Request $request)
+    private $request;
+
+    public function __construct(Request $request)
     {
-        return 'It\'s ' . $request->service . ' registerOrder function from Cdek';
+        $this->request = $request;
+    }
+
+    public function registerOrder()
+    {
+        return 'It\'s ' . $this->request->service . ' registerOrder function from Cdek';
     }
 }
