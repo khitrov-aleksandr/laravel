@@ -1,9 +1,10 @@
 <?php
 
+
 namespace App\Contracts\Delivery;
 
 
-interface CreateOrder extends Delivery
+interface Delivery
 {
     public function create();
 }

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Delivery;
+use App\Contracts\Delivery\CreateOrder;
+use App\Contracts\Delivery\Delivery;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
 
-    public function __construct(Delivery $delivery)
+    public function __construct(CreateOrder $delivery)
     {
         $this->delivery = $delivery;
     }
@@ -20,7 +21,7 @@ class DeliveryController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->delivery->registerOrder($request);
+        return $this->delivery->create($request);
     }
 
     /**

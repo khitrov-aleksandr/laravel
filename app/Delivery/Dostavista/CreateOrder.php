@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Delivery;
+namespace App\Delivery\Dostavista;
 
-use App\Contracts\CreateOrder;
+use App\Contracts\Delivery\CreateOrder as CreateOrderInterface;
+use App\Contracts\Delivery\Delivery;
 use Illuminate\Http\Request;
 
-class CreateOrder implements CreateOrder
+class CreateOrder implements CreateOrderInterface
 {
     private $request;
 
@@ -14,7 +15,7 @@ class CreateOrder implements CreateOrder
         $this->request = $request;
     }
 
-    public function registerOrder()
+    public function create()
     {
         return 'It\'s ' . $this->request->service . ' registerOrder function from Dostavista';
     }
