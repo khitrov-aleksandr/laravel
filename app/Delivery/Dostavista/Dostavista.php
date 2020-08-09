@@ -2,10 +2,10 @@
 
 namespace App\Delivery;
 
-use App\Contracts\Delivery;
+use App\Contracts\CreateOrder;
 use Illuminate\Http\Request;
 
-class Dostavista implements Delivery
+class CreateOrder implements CreateOrder
 {
     private $request;
 
