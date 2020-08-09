@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Contracts\Delivery\CreateOrder;
-use App\Contracts\Delivery\Delivery;
+use App\Contracts\Delivery\Order as DeliveryOrder;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DeliveryController extends Controller
 {
 
-    public function __construct(Delivery $delivery)
+    public function __construct(DeliveryOrder $order)
     {
-        $this->delivery = $delivery;
+        $this->order = $order;
     }
 
     /**
@@ -19,17 +20,7 @@ class DeliveryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        return $this->delivery->create($request);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index()
     {
         //
     }
@@ -40,9 +31,9 @@ class DeliveryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        return $this->order->create();
     }
 
     /**
@@ -52,17 +43,6 @@ class DeliveryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
@@ -87,6 +67,6 @@ class DeliveryController extends Controller
      */
     public function destroy($id)
     {
-        return $this->delivery->delete($id);
+        return $this->order->delete($id);
     }
 }

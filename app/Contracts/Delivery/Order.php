@@ -3,7 +3,9 @@
 namespace App\Contracts\Delivery;
 
 
-interface CreateOrder extends Delivery
+interface Order
 {
     public function create();
+    public function cancel();
+    public function test();
 }
