@@ -87,6 +87,6 @@ class DeliveryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->delivery->delete($id);
     }
 }
