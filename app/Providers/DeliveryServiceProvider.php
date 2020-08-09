@@ -16,11 +16,9 @@ class DeliveryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Contracts\Delivery\CreateOrder',
+            'App\Contracts\Delivery\Delivery',
             function ($app) {
                 switch ($app->request->service) {
-                    case 'dv':
-                        return new DostavistaCreateOrder($app->request);
                     case 'cdek':
                         return new CdekCreateOrder($app->request);
                     default:

@@ -3,7 +3,6 @@
 namespace App\Delivery\Dostavista;
 
 use App\Contracts\Delivery\CreateOrder as CreateOrderInterface;
-use App\Contracts\Delivery\Delivery;
 use Illuminate\Http\Request;
 
 class CreateOrder implements CreateOrderInterface

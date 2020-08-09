@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class DeliveryController extends Controller
 {
 
-    public function __construct(CreateOrder $delivery)
+    public function __construct(Delivery $delivery)
     {
         $this->delivery = $delivery;
     }
