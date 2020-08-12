@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Delivery\Dostavista;
-use App\Delivery\Cdek;
+use App\Delivery\Dostavista\Order as DostavistaOrder;
 
 class DeliveryServiceProvider extends ServiceProvider
 {
@@ -16,16 +15,9 @@ class DeliveryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Contracts\Delivery',
+            'App\Contracts\Delivery\Order',
             function ($app) {
-                switch ($app->request->service) {
-                    case 'dv':
-                        return new Dostavista($app->request);
-                    case 'cdek':
-                        return new Cdek($app->request);
-                    default:
-                        return new Dostavista($app->request);
-                }
+                return new DostavistaOrder($app->request);
             }
         );
     }
