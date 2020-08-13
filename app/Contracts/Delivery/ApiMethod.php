@@ -4,7 +4,7 @@
 namespace App\Contracts\Delivery;
 
 
-interface ApiRequest
+interface ApiMethod
 {
     public function test();
 }

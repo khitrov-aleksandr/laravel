@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Delivery\Order as DeliveryOrder;
+use App\Delivery\Dostavista\ApiMethod;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,9 +11,12 @@ use App\Http\Controllers\Controller;
 class DeliveryController extends Controller
 {
 
+    private $apiMethod;
+
     public function __construct(DeliveryOrder $order)
     {
         $this->order = $order;
+        $this->apiMethod = new ApiMethod();
     }
 
     /**
@@ -22,7 +26,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //
+        echo $this->apiMethod->getOrderList();
     }
 
     /**
