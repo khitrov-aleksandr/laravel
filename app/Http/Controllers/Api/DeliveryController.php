@@ -26,7 +26,9 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        echo $this->apiMethod->getOrderList();
+        //echo $this->apiMethod->getOrderList();
+
+        return response()->json(json_decode($this->apiMethod->getOrderList()));
     }
 
     /**
@@ -72,5 +74,15 @@ class DeliveryController extends Controller
     public function destroy($id)
     {
         return $this->order->delete($id);
+    }
+
+    /**
+     * Test delivery.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function test()
+    {
+        return response()->json(json_decode($this->apiMethod->test()));
     }
 }
