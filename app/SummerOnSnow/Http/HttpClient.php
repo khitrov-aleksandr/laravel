@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Delivery\Dostavista;
+namespace App\SummerOnSnow\Http;
 
 
 use App\Contracts\HttpClient as HttpClientInterface;
