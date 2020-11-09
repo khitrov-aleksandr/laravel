@@ -4,11 +4,10 @@
 namespace App\Delivery\Dostavista;
 
 use App\Contracts\Delivery\ApiMethod as ApiMethodInterface;
-use App\Delivery\HttpClient;
+use App\Delivery\Dostavista\HttpClient;
 
-class ApiMethod implements ApiMethodInterface
+class Method implements ApiMethodInterface
 {
-
     const AUTH_HEADER = 'X-DV-Auth-Token';
 
     public function __construct() {

@@ -15,7 +15,7 @@ class DostavistaTest extends TestCase
      */
     public function testDostavista()
     {
-        $response = $this->getJson('/api/delivery/test');
+        $response = $this->getJson('/api/delivery');
 
         $response->assertStatus(200)->assertJson([
             'is_successful' => true

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Delivery;
+namespace App\Delivery\Dostavista;
 
 
 use App\Contracts\HttpClient as HttpClientInterface;
@@ -10,8 +10,8 @@ use GuzzleHttp\Client;
 
 class HttpClient implements HttpClientInterface
 {
-
-    private $client, $headers;
+    private $client,
+        $headers;
 
     public function __construct($baseUrl, $headers = [])
     {
@@ -23,7 +23,7 @@ class HttpClient implements HttpClientInterface
 
     public function get($uri = '')
     {
-        $response = $this->client->get($uri, [ 'headers' => $this->headers ]);
+        $response = $this->client->get($uri, ['headers' => $this->headers]);
         return $response->getBody();
     }
 
