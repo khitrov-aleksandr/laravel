@@ -4,28 +4,48 @@
 namespace App\SummerOnSnow\Http;
 
 
-use App\SummerOnSnow\Http\HttpClient;
+use App\Contracts\Delivery\Dostavista\HttpClient as DostavistaHttpClientInterface;
 
 
-class DostavistaHttpClient extends HttpClient
+class DostavistaHttpClient implements DostavistaHttpClientInterface
 {
-    private $token;
+    private $httpClient,
+        $baseUrl,
+        $headers,
+        $token;
 
-    public function __construct($baseUrl, $headers = [])
+    public function __construct()
     {
-        parent::__construct($baseUrl, $headers);
-        $this->setToken();
+        $this->baseUrl = $this->getBaseUrl();
+        $this->token = $this->getToken();
+        $this->setHeaders();
+        $this->httpClient = new \App\SummerOnSnow\Http\HttpClient($this->baseUrl);
     }
 
-    public function get() {
-
+    public function get($path = '')
+    {
+        return $this->httpClient->get($path, $this->headers);
     }
 
-    private function setBaseUrl() {
-
+    public function post($path = '')
+    {
+        return $this->httpClient->post($path, $this->headers);
     }
 
-    private function setToken() {
-        $this->token = config('app.dostavista_token');
+    private function getBaseUrl()
+    {
+        return config('app.dostavista_base_url');
+    }
+
+    private function getToken()
+    {
+        return config('app.dostavista_token');
+    }
+
+    private function setHeaders()
+    {
+        $this->headers = [
+            'X-DV-Auth-Token' => $this->token
+        ];
     }
 }

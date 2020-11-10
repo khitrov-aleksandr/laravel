@@ -4,32 +4,30 @@
 namespace App\SummerOnSnow\Http;
 
 
-use App\Contracts\HttpClient as HttpClientInterface;
+use App\SummerOnSnow\Contracts\HttpClient as HttpClientInterface;
 use GuzzleHttp\Client;
 
 
 class HttpClient implements HttpClientInterface
 {
-    private $client,
-        $headers;
+    private $client;
 
-    public function __construct($baseUrl, $headers = [])
+    public function __construct($baseUrl)
     {
         $this->client = new Client([
             'base_uri' => $baseUrl . '/'
         ]);
-        $this->headers = $headers;
     }
 
-    public function get($uri = '')
+    public function get($path = '', $headers = [])
     {
-        $response = $this->client->get($uri, ['headers' => $this->headers]);
+        $response = $this->client->get($path, ['headers' => $headers]);
         return $response->getBody();
     }
 
-    public function post($uri = '')
+    public function post($path = '', $headers = [])
     {
-        $response = $this->client->post($uri, ['headers' => $this->headers]);
+        $response = $this->client->post($path, ['headers' => $headers]);
         return $response->getBody();
     }
 }

@@ -4,16 +4,12 @@
 namespace App\Delivery\Dostavista;
 
 use App\Contracts\Delivery\ApiMethod as ApiMethodInterface;
-use App\Delivery\Dostavista\HttpClient;
+use App\Contracts\Delivery\Dostavista\HttpClient as DostavistaHttpClientInterface;
 
 class Method implements ApiMethodInterface
 {
-    const AUTH_HEADER = 'X-DV-Auth-Token';
-
-    public function __construct() {
-        $this->httpClient = new HttpClient(config('app.dostavista_base_url'), [
-            self::AUTH_HEADER => config('app.dostavista_token')
-        ]);
+    public function __construct(DostavistaHttpClientInterface $httpClient) {
+        $this->httpClient = $httpClient;
     }
 
     public function test()
