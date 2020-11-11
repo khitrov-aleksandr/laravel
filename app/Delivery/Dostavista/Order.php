@@ -2,16 +2,25 @@
 
 namespace App\Delivery\Dostavista;
 
-use App\Contracts\Delivery\Order as DeliveryOrder;
+
 use Illuminate\Http\Request;
+
+use App\Contracts\Delivery\Order as DeliveryOrder;
+use App\Delivery\Dostavista\HttpClient;
 
 class Order implements DeliveryOrder
 {
-    private $request;
+    private $httpClient,
+        $path = 'orders';
 
-    public function __construct(Request $request)
+    public function __construct(HttpClient $httpClient)
     {
-        $this->request = $request;
+        $this->httpClient = $httpClient;
+    }
+
+    public function test()
+    {
+        return $this->httpClient->get($this->path);
     }
 
     public function create()
@@ -22,10 +31,6 @@ class Order implements DeliveryOrder
     public function cancel()
     {
         return 'It\'s ' . $this->request->service . ' registerOrder function from Order';
-    }
-
-    public function test() {
-        return 'It\'s test';
     }
 }
 
