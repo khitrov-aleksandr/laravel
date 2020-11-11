@@ -3,20 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Delivery\Order as DeliveryOrder;
-use App\Delivery\Dostavista\Method;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class DeliveryController extends Controller
 {
-
-    private $apiMethod;
+    private $order;
 
     public function __construct(DeliveryOrder $order)
     {
         $this->order = $order;
-        $this->method = new Method();
     }
 
     /**
@@ -26,15 +23,15 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //echo $this->apiMethod->getOrderList();
-
-        return response()->json(json_decode($this->method->getOrderList()));
+        return response()
+            ->json(json_decode($this->order->test())
+            );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(OrderRequest $request)
@@ -45,7 +42,7 @@ class DeliveryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,8 +53,8 @@ class DeliveryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -68,7 +65,7 @@ class DeliveryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

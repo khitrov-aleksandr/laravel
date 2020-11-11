@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\SummerOnSnow\Http;
+namespace App\Delivery\Dostavista;
 
 
 use App\Contracts\Delivery\Dostavista\HttpClient as DostavistaHttpClientInterface;
 
 
-class DostavistaHttpClient implements DostavistaHttpClientInterface
+class HttpClient implements DostavistaHttpClientInterface
 {
     private $httpClient,
         $baseUrl,
