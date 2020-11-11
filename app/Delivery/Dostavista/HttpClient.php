@@ -5,21 +5,20 @@ namespace App\Delivery\Dostavista;
 
 
 use App\Contracts\Delivery\Dostavista\HttpClient as DostavistaHttpClientInterface;
+use App\SummerOnSnow\Http\HttpClient as HttpClientAdapter;
 
 
 class HttpClient implements DostavistaHttpClientInterface
 {
     private $httpClient,
-        $baseUrl,
         $headers,
         $token;
 
-    public function __construct()
+    public function __construct(HttpClientAdapter $httpClient, $token)
     {
-        $this->baseUrl = $this->getBaseUrl();
-        $this->token = $this->getToken();
+        $this->httpClient = $httpClient;
+        $this->token = $token;
         $this->setHeaders();
-        $this->httpClient = new \App\SummerOnSnow\Http\HttpClient($this->baseUrl);
     }
 
     public function get($path = '')
@@ -30,16 +29,6 @@ class HttpClient implements DostavistaHttpClientInterface
     public function post($path = '')
     {
         return $this->httpClient->post($path, $this->headers);
-    }
-
-    private function getBaseUrl()
-    {
-        return config('app.dostavista_base_url');
-    }
-
-    private function getToken()
-    {
-        return config('app.dostavista_token');
     }
 
     private function setHeaders()
