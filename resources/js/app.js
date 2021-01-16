@@ -32,4 +32,8 @@ const app = new Vue({
 });
 
 //React
-require('./components/TestReactComponent')
+//require('./components/TestReactComponent')
+require('./components/MapComponent')
+
+//Leaflet
+const L = require('leaflet');
