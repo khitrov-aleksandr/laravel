@@ -4,15 +4,38 @@ import L from 'leaflet';
 
 class MapComponent extends React.Component {
     leafLet() {
-        var map = L.map('mapid').setView([51.505, -0.09], 10);
+
+        var zoom = 13;
+        var center = [54.194946, 37.620137];
+        var point = [54.209370, 37.628065];
+
+        var map = L.map('mapid').setView(center, zoom);
+
+        var greenIcon = L.icon({
+            iconUrl: 'images/vendor/leaflet/dist/marker-icon.png',
+            shadowUrl: 'images/vendor/leaflet/dist/marker-shadow.png',
+            //iconSize:     [38, 95], // size of the icon
+            //shadowSize:   [50, 64], // size of the shadow
+            iconAnchor:   [20, 15], // point of the icon which will correspond to marker's location
+            shadowAnchor: [20, 15],  // the same for the shadow
+            popupAnchor:  [-10, -10] // point from which the popup should open relative to the iconAnchor
+        });
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        var marker = L.marker(point, {icon: greenIcon}).addTo(map)
+            .bindPopup('<b>RifeBank</b><br>Banking address')
             .openPopup();
+
+        var group = new L.featureGroup([marker]);
+
+        //Auto zoom
+        map.fitBounds(group.getBounds());
+
+        //Auto center
+        map.fitBounds([point]);
     }
 
     componentDidMount() {
@@ -20,7 +43,7 @@ class MapComponent extends React.Component {
     }
 
     render() {
-        return <div id="mapid" style={{ height: "280px" }}></div>
+        return <div id="mapid" style={{height: "600px"}}></div>
     }
 }
 

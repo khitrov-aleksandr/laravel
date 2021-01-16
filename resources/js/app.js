@@ -36,4 +36,4 @@ const app = new Vue({
 require('./components/MapComponent')
 
 //Leaflet
-const L = require('leaflet');
+//const L = require('leaflet');
