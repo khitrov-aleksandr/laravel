@@ -19,5 +19,8 @@ Route::get('/', function () {
 });
 */
 
-Route::resource('/', 'DeliveryController');
+//Route::resource('/', 'DeliveryController');
+Route::get('/', function (){
+    return view('welcome');
+});
 Route::resource('/test', 'TestController');
