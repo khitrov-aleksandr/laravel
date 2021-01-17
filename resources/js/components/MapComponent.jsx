@@ -18,9 +18,9 @@ class MapComponent extends React.Component {
             shadowUrl: 'images/vendor/leaflet/dist/marker-shadow.png',
             //iconSize:     [38, 95], // size of the icon
             //shadowSize:   [50, 64], // size of the shadow
-            iconAnchor: [20, 15], // point of the icon which will correspond to marker's location
-            shadowAnchor: [20, 15],  // the same for the shadow
-            popupAnchor: [-10, -10] // point from which the popup should open relative to the iconAnchor
+            iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+            shadowAnchor: [20, 40],  // the same for the shadow
+            popupAnchor: [-10, -35] // point from which the popup should open relative to the iconAnchor
         });
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
