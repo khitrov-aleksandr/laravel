@@ -19,8 +19,9 @@ Route::get('/', function () {
 });
 */
 
-//Route::resource('/', 'DeliveryController');
-Route::get('/', function (){
-    return view('welcome');
-});
+Route::resource('/', 'HomeController');
 Route::resource('/test', 'TestController');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
