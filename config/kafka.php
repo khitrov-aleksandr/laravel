@@ -74,4 +74,6 @@ return [
      | The cache driver that will be used
      */
     'cache_driver' => env('KAFKA_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
+
+    'default_topic' => env('KAFKA_DEFAULT_TOPIC', 'default-topic'),
 ];

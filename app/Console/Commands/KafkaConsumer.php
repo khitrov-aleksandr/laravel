@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Brokers\Kafka\Handlers\ConsumerMessageHandler;
 use Illuminate\Console\Command;
 use Junges\Kafka\Facades\Kafka;
 
@@ -26,18 +27,15 @@ class KafkaConsumer extends Command
      */
     public function handle()
     {
-        $this->info(config('kafka.brokers'));
+        $this->info('Start Kafka consumer...');
 
-        $consumer = Kafka::consumer()
-            ->withBrokers('kafka:9092')
-            ->withConsumerGroupId('test-laravel-group')
-            ->subscribe('test-laravel-topic')
-            ->withHandler(function (\Junges\Kafka\Contracts\ConsumerMessage $message, \Junges\Kafka\Contracts\MessageConsumer $consumer) {
-                var_dump($message->getBody());
-                \Log::info($message->getBody());
-            })
-            ->build();
+        $stopAfterLastMessage = false;
 
-        $consumer->consume();
+        Kafka::consumer()
+            ->subscribe(config('kafka.default_topic'))
+            ->stopAfterLastMessage($stopAfterLastMessage)
+            ->withHandler(new ConsumerMessageHandler)
+            ->build()
+            ->consume();
     }
 }
